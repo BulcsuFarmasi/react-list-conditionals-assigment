@@ -11,6 +11,19 @@ class App extends Component {
     chars: []
   };
 
+  deleteChar = index => {
+    const chars = [...this.state.chars];
+    chars.splice(index, 1);
+
+    const text = chars.join("");
+
+    this.setState({
+      text,
+      textLength: text.length,
+      chars
+    });
+  };
+
   textChanged = event => {
     const text = event.target.value;
     this.setState({
@@ -30,8 +43,8 @@ class App extends Component {
         />
         <p>Length of input: {this.state.textLength}</p>
         <Validation textLength={this.state.textLength} />
-        {this.state.chars.map(char => (
-          <Char char={char} />
+        {this.state.chars.map((char, index) => (
+          <Char char={char} deleteChar={() => this.deleteChar(index)} />
         ))}
       </div>
     );
