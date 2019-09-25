@@ -31,6 +31,10 @@ class App extends Component {
   };
 
   render() {
+    let chars = this.state.chars.map((char, index) => (
+      <Char char={char} deleteChar={() => this.deleteChar(index)} />
+    ));
+
     return (
       <div className="App">
         <input
@@ -40,9 +44,7 @@ class App extends Component {
         />
         <p>Length of input: {this.state.text.length}</p>
         <Validation textLength={this.state.text.length} />
-        {this.state.chars.map((char, index) => (
-          <Char char={char} deleteChar={() => this.deleteChar(index)} />
-        ))}
+        {chars}
       </div>
     );
   }
