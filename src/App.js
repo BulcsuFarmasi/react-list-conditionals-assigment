@@ -31,8 +31,8 @@ class App extends Component {
   };
 
   render() {
-    let chars = this.state.chars.map((char, index) => (
-      <Char char={char} deleteChar={() => this.deleteChar(index)} />
+    const chars = this.state.chars.map((char, index) => (
+      <Char char={char} key={index} deleteChar={() => this.deleteChar(index)} />
     ));
 
     return (
