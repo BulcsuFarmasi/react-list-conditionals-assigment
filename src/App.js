@@ -7,7 +7,6 @@ import { Validation } from "./Validation/Validation";
 class App extends Component {
   state = {
     text: "",
-    textLength: 0,
     chars: []
   };
 
@@ -19,7 +18,6 @@ class App extends Component {
 
     this.setState({
       text,
-      textLength: text.length,
       chars
     });
   };
@@ -28,7 +26,6 @@ class App extends Component {
     const text = event.target.value;
     this.setState({
       text,
-      textLength: text.length,
       chars: text.split("")
     });
   };
@@ -41,8 +38,8 @@ class App extends Component {
           value={this.state.text}
           onChange={this.textChanged}
         />
-        <p>Length of input: {this.state.textLength}</p>
-        <Validation textLength={this.state.textLength} />
+        <p>Length of input: {this.state.text.length}</p>
+        <Validation textLength={this.state.text.length} />
         {this.state.chars.map((char, index) => (
           <Char char={char} deleteChar={() => this.deleteChar(index)} />
         ))}
