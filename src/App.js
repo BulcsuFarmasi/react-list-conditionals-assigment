@@ -6,34 +6,38 @@ import { Validation } from "./Validation/Validation";
 
 class App extends Component {
   state = {
-    text: "",
-    chars: []
+    text: ""
   };
 
   deleteChar = index => {
-    const chars = [...this.state.chars];
-    chars.splice(index, 1);
+    const text = this.state.text.split("");
 
-    const text = chars.join("");
+    text.splice(index, 1);
+
+    const newText = text.join("");
 
     this.setState({
-      text,
-      chars
+      text: newText
     });
   };
 
   textChanged = event => {
     const text = event.target.value;
     this.setState({
-      text,
-      chars: text.split("")
+      text
     });
   };
 
   render() {
-    const chars = this.state.chars.map((char, index) => (
-      <Char char={char} key={index} deleteChar={() => this.deleteChar(index)} />
-    ));
+    const chars = this.state.text
+      .split("")
+      .map((char, index) => (
+        <Char
+          char={char}
+          key={index}
+          deleteChar={() => this.deleteChar(index)}
+        />
+      ));
 
     return (
       <div className="App">
